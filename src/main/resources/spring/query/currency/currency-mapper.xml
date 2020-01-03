@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="setlog.spring.batch.dao.CurrencyMapper">
+
+    <sql id="pagingPostMysql">
+		limit #{firstRecordIndex }, #{recordCountPerPage }
+	</sql>
+
+	<select id="selectALL" resultType="int">
+		/* setlog.spring.batch.dao.CurrencyMapper.selectALL */
+		SELECT COUNT(1) FROM DUAL
+	</select>
+	
+	<insert id="insertCurrencyMstAllList" parameterType="java.util.HashMap">
+		/* setlog.spring.batch.dao.CurrencyMapper.insertCurrencyMstAllList */
+		INSERT INTO currency.currency_mst 
+			(
+				bok_code,
+				value,
+				date
+			) VALUES
+			
+			<foreach collection="currencyVOList" item="item" index="index" separator=" , ">
+				(
+					#{item.bokCode},
+					#{item.value},
+					NOW()
+				)
+			</foreach>
+	</insert>
+	
+	<insert id="insertCurrencyHstFromMst">
+		/* setlog.spring.batch.dao.CurrencyMapper.insertCurrencyHstFromMst */
+		INSERT INTO currency.currency_hst 
+			(
+				bok_code,
+				value,
+				date
+			) 
+		SELECT 
+				bok_code, 
+				value, 
+				date
+		FROM currency.currency_mst
+	</insert>	
+	
+	<delete id="deleteCurrencyMst">
+		/* setlog.spring.batch.dao.CurrencyMapper.deleteCurrencyMst */
+		DELETE FROM currency.currency_mst
+	</delete>
+	
+</mapper>
+
+

@@ -1,0 +1,15 @@
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+        <setting name="defaultStatementTimeout" value="30"/>
+		
+	 <!-- parameter가 null인 경우 처리 -->
+		<setting name="jdbcTypeForNull" value="NULL" />
+
+	 <!-- return이 null인 경우 처리 -->
+		<setting name="callSettersOnNulls" value="true" />
+	</settings>
+
+</configuration>
