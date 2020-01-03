@@ -5,6 +5,10 @@
 #### Build Setup
 
 ``` bash
++ spring boot batch
++ mybatis
++ multiple db connection
++ jenkins
 
 ```
 
